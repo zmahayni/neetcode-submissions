@@ -1,0 +1,17 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        counts = defaultdict(int)
+        freqs = [[] for i in range(len(nums) + 1)]
+
+        for n in nums:
+            counts[n] += 1
+        for n, c in counts.items():
+            freqs[c].append(n)
+        
+        res = []
+        for i in range(len(freqs) - 1, 0, -1):
+            for num in freqs[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
+
